@@ -202,7 +202,7 @@ def get_image(name):
     try:
         filename = name
         return send_from_directory(
-            app.config['UPLOAD_FOLDER'], name, as_attachment=True
+            app.config['UPLOAD_FOLDER'], name
         )
     except:
         return {
