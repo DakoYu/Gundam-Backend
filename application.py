@@ -1,3 +1,4 @@
+from email.mime import application
 from logging import debug
 import os
 from bson import decode
@@ -25,7 +26,9 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(APP_ROOT, 'images')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-app = Flask(__name__)
+application = Flask(__name__)
+
+app = application
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
