@@ -17,7 +17,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 import bcrypt
 from datetime import timedelta, datetime
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 from flask import send_file
 
@@ -68,6 +68,7 @@ def index():
 # Get All the Gunpla Kits
 # or to create new gunpla kits
 @app.route('/api/gunpla', methods=['GET', 'POST'])
+@cross_origin(origin='*',headers=['Content- Type','Authorization'])
 def gunpla():
     if request.method == 'GET':
         query = None
@@ -135,6 +136,7 @@ def gunpla():
 
 # Get, Update or Delete Gunpla Kits with the id
 @app.route('/api/gunpla/<id>', methods=['GET', 'PATCH', 'DELETE'])
+@cross_origin(origin='*',headers=['Content- Type','Authorization'])
 @jwt_required()
 def gunpla_delete(id):
     if request.method == 'GET':
@@ -237,6 +239,7 @@ def get_new():
 
 # Log In Handler
 @app.route('/api/login', methods=['POST'])
+@cross_origin(origin='*',headers=['Content- Type','Authorization'])
 def login():
     email = request.json.get('email', None)
     password = request.json.get('password', None)
