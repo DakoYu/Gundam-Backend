@@ -32,7 +32,7 @@ app = application
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # set up flask + jwt config
 app.config['JWT_SECRET_KEY'] = 'SHJGDFJHD32467823SDJSDFfd'
