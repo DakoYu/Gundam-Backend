@@ -58,6 +58,10 @@ def get_data(data):
         res.append(doc)
     return res
 
+@app.route('/', methods=['GET'])
+def index():
+    return 'test'
+
 # Get All the Gunpla Kits
 # or to create new gunpla kits
 @app.route('/api/gunpla', methods=['GET', 'POST'])
