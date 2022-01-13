@@ -310,7 +310,3 @@ def handle_eception(e):
     response.content_type = 'application/json'
 
     return response
-
-
-if __name__ == '__main__':
-    app.run()
