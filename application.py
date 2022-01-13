@@ -68,7 +68,7 @@ def index():
 # Get All the Gunpla Kits
 # or to create new gunpla kits
 @app.route('/api/gunpla', methods=['GET', 'POST'])
-@cross_origin(origin='*',headers=['Content- Type','Authorization'])
+@cross_origin()
 def gunpla():
     if request.method == 'GET':
         query = None
@@ -136,7 +136,7 @@ def gunpla():
 
 # Get, Update or Delete Gunpla Kits with the id
 @app.route('/api/gunpla/<id>', methods=['GET', 'PATCH', 'DELETE'])
-@cross_origin(origin='*',headers=['Content- Type','Authorization'])
+@cross_origin()
 @jwt_required()
 def gunpla_delete(id):
     if request.method == 'GET':
@@ -241,7 +241,7 @@ def get_new():
 
 # Log In Handler
 @app.route('/api/login', methods=['POST'])
-@cross_origin(origin='*',headers=['Content- Type','Authorization'])
+@cross_origin()
 def login():
     email = request.json.get('email', None)
     password = request.json.get('password', None)
@@ -271,6 +271,7 @@ def login():
 
 # Register Handler with special key
 @app.route('/api/register', methods=['POST'])
+@cross_origin()
 def register():
     secret = request.json.get('secret', None)
 
