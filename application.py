@@ -19,7 +19,7 @@ import bcrypt
 from datetime import timedelta, datetime
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
-from flask import send_file
+from flask import send_file, send_from_directory
 
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -201,7 +201,9 @@ def gunpla_delete(id):
 def get_image(name):
     try:
         filename = name
-        return send_file(f'images\{filename}')
+        return send_from_directory(
+            app.config['UPLOAD_FOLDER'], name, as_attachment=True
+        )
     except:
         return {
             'status': 'fail',
