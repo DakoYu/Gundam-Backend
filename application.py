@@ -20,6 +20,9 @@ from datetime import timedelta, datetime
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 from flask import send_file, send_from_directory
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -35,13 +38,13 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # set up flask + jwt config
-app.config['JWT_SECRET_KEY'] = 'SHJGDFJHD32467823SDJSDFfd'
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY')
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=3)
 jwt = JWTManager(app)
 
 # Data Base Config
 
-client = MongoClient('mongodb+srv://dako:csol355@cluster0.tqobu.mongodb.net/gundam?retryWrites=true&w=majority')
+client = MongoClient(os.environ.get('MONGO'))
 
 db = client['gundam']
 
