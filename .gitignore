@@ -119,7 +119,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-virt/
+/virt
 
 # Spyder project settings
 .spyderproject
